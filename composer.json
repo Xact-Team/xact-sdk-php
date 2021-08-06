@@ -3,6 +3,14 @@
   "description": "xact sdk client",
   "minimum-stability": "stable",
   "version": "1.0.0",
+  "keywords": [
+    "Xact",
+    "Hedera",
+    "Wallet",
+    "SDK"
+  ],
+  "homepage": "https://wallet.xact.ac/",
+  "license": "MIT",
   "require": {
     "php": "^7.2.5",
     "guzzlehttp/guzzle": "^7.3"
