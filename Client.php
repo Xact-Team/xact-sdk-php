@@ -9,6 +9,10 @@ use Xact\Models\PaymentDto;
 use Xact\Models\ScopeEnum;
 use Xact\Models\TokenAssociateDto;
 use Xact\Models\TokenTransferDto;
+use Xact\Models\SellNFTDto;
+use Xact\Models\DeleteNFTDto;
+use Xact\Models\BuyNFTDto;
+use Xact\Models\RefreshAccountDTO;
 
 class Client
 {
@@ -78,4 +82,48 @@ class Client
 
         return $this->api->post('/xact/create-nft', ['json' => $payload]);
     }
+
+    public function sellNFT(SellNFTDto $sellNFTDto, string $webhookUrl): ResponseInterface
+    {
+        $payload = (array) $sellNFTDto;
+        $payload['webhook'] = $webhookUrl;
+
+        return $this->api->post('/xact/sell-nft', ['json' => $payload]);
+    }
+
+    public function deleteNFTFromSale(DeleteNFTDto $deleteNFTDto, string $webhookUrl): ResponseInterface
+    {
+        $payload = (array) $deleteNFTDto;
+        $payload['webhook'] = $webhookUrl;
+
+        return $this->api->post("/xact/delete-sell-nft/${$deleteNFTDto['tokenId']}", ['json' => $payload]);
+    }
+
+    public function getXactFeesBuyNFT(float $hbarAmount, bool $supportXact = false): ResponseInterface
+    {
+        return $this->api->get("/xact/fees/buy-nft?amount=${hbarAmount}&support=${supportXact}");
+    }
+
+    public function buyNFT(BuyNFTDto $buyNFTDto, string $webhookUrl): ResponseInterface
+    {
+       $payload = (array) $buyNFTDto;
+       $payload['webhook'] = $webhookUrl;
+
+       return $this->api->post('/xact/buy-nft', ['json' => $payload]);
+    }
+
+    public function refreshAccount(RefreshAccountDTO $refreshAccount, string $webhookUrl): ResponseInterface
+    {
+       $payload = (array) $refreshAccount;
+       $payload['webhook'] = $webhookUrl;
+       $payload['scope'] = $payload['scope'] ? $payload['scope'] : [ScopeEnum::PROFILE]
+
+       return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
+    }
+
+    public function getNFTForSaleByTokenId(string $tokenId): ResponseInterface
+    {
+        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${tokenId}");
+    }
+
 }
