@@ -99,11 +99,6 @@ class Client
         return $this->api->post("/xact/delete-sell-nft/${$deleteNFTDto['tokenId']}", ['json' => $payload]);
     }
 
-    public function getXactFeesBuyNFT(float $hbarAmount, bool $supportXact = false): ResponseInterface
-    {
-        return $this->api->get("/xact/fees/buy-nft?amount=${hbarAmount}&support=${supportXact}");
-    }
-
     public function buyNFT(BuyNFTDto $buyNFTDto, string $webhookUrl): ResponseInterface
     {
        $payload = (array) $buyNFTDto;
