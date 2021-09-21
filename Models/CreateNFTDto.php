@@ -19,6 +19,9 @@ class CreateNFTDto
 
         /* NFT's Quantity */
         public $supply; /* string */
+
+        /* Add Custom Fee - https://docs.hedera.com/guides/docs/sdks/tokens/custom-token-fees#royalty-fee */
+        CustomRoyalties $customRoyaltyFee;
     },
 
     /* Which Account ID issue the NFT's Creation */
@@ -30,4 +33,3 @@ class CreateNFTDto
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
 }
-
