@@ -15,4 +15,7 @@ class TokenTransferDto
 
     /* Supply */
     public $supply = 1; /* number */
+
+    /* Custom Uniq Id - Identify Browser's that made the request  */
+    public $uniqId; /* string */
 }

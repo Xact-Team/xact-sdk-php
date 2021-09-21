@@ -9,4 +9,7 @@ class TokenAssociateDto
 
     /* Token to Associate */
     public $tokenId; /* string */
+
+    /* Custom Uniq Id - Identify Browser's that made the request  */
+    public $uniqId; /* string */
 }

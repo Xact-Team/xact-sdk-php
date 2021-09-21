@@ -21,4 +21,7 @@ class PaymentDto
 
     /* Support the Xact Team - round up fees */
     public $supportXact = null; /* boolean */
+
+    /* Custom Uniq Id - Identify Browser's that made the request  */
+    public $uniqId; /* string */
 }

@@ -10,4 +10,6 @@ class BuyNFTDto
     public $quantity; /* number */
     /* tokenId of the NFT */
     public $tokenId; /* number */
+    /* Custom Uniq Id - Identify Browser's that made the request  */
+    public $uniqId; /* string */
 }

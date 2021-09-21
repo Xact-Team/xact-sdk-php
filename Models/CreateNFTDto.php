@@ -26,5 +26,8 @@ class CreateNFTDto
 
     /* Media linked to the NFT - Must be in base64 */
     public $media; /* string:base64 */
+
+    /* Custom Uniq Id - Identify Browser's that made the request  */
+    public $uniqId; /* string */
 }
 
