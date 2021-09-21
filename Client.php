@@ -34,7 +34,7 @@ class Client
         $payload['uniqId'] = $uniqId;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/getQRCode', ['json' => ['scope' => $payload]]);
+        return $this->api->post('/xact/getQRCode', ['json' => $payload]);
     }
 
     public function getXactFeesPayment(float $hbarAmount, bool $supportXact = false): ResponseInterface
