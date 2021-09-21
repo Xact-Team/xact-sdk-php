@@ -28,9 +28,10 @@ class Client
         ]);
     }
 
-    public function generateQRCode(array $scope = [ScopeEnum::PROFILE], string $webhookUrl): ResponseInterface
+    public function generateQRCode(array $scope = [ScopeEnum::PROFILE], string $uniqId, string $webhookUrl): ResponseInterface
     {
         $payload = (array) $scope;
+        $payload['uniqId'] = $uniqId;
         $payload['webhook'] = $webhookUrl;
 
         return $this->api->post('/xact/getQRCode', ['json' => ['scope' => $payload]]);

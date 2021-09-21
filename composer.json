@@ -2,7 +2,7 @@
   "name": "xact/sdk",
   "description": "xact sdk client",
   "minimum-stability": "stable",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "keywords": [
     "Xact",
     "Hedera",
