@@ -108,10 +108,9 @@ class Client
        return $this->api->post('/xact/buy-nft', ['json' => $payload]);
     }
 
-    public function refreshAccount(RefreshAccountDTO $refreshAccount, string $webhookUrl): ResponseInterface
+    public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface
     {
        $payload = (array) $refreshAccount;
-       $payload['webhook'] = $webhookUrl;
        $payload['scope'] = $payload['scope'] ? $payload['scope'] : [ScopeEnum::PROFILE]
 
        return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
