@@ -14,4 +14,8 @@ class SellNFTDto
     public $tokenId; /* number */
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
+   /* The NFT could only be sell to accountId present on that list */
+    public $accountIds; /* string */
+    /* add a middle men in order to collect fees */
+    public $middleMen; /* string */;
 }
