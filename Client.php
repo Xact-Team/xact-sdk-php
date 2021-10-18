@@ -111,7 +111,7 @@ class Client
     public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface
     {
        $payload = (array) $refreshAccount;
-       $payload['scope'] = $payload['scope'] ? $payload['scope'] : [ScopeEnum::PROFILE]
+       $payload['scope'] = $payload['scope'] ? $payload['scope'] : [ScopeEnum::PROFILE];
 
        return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
     }
