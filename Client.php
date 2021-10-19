@@ -28,7 +28,7 @@ class Client
         ]);
     }
 
-    public function generateQRCode(array $scope = [ScopeEnum::PROFILE], string $uniqId, string $webhookUrl): ResponseInterface
+    public function generateQRCode(string $uniqId, string $webhookUrl, array $scope = [ScopeEnum::PROFILE]): ResponseInterface
     {
         $payload = (array) $scope;
         $payload['uniqId'] = $uniqId;
