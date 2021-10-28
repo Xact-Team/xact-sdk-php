@@ -30,9 +30,6 @@ class CreateNFTDto
     /* cid linked to the NFT - From IPFS storage */
     public $cid;
 
-    /* preview of the NFT */
-    public $preview;
-
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
 }
