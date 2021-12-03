@@ -10,6 +10,8 @@ class SellNFTDto
     public $hbarAmount; /* number */
     /* Quantity for sale */
     public $quantity; /* number */
+    /* ID of the NFTs for sale */
+    public $nftIds;  /* Array /*
     /* tokenId of the NFT */
     public $tokenId; /* number */
     /* Custom Uniq Id - Identify Browser's that made the request  */
