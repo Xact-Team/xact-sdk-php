@@ -105,7 +105,7 @@ class Client
        $payload = (array) $buyNFTDto;
        $payload['webhook'] = $webhookUrl;
 
-       return $this->api->post('/xact/buy-nft', ['json' => $payload]);
+       return $this->api->post("/xact/buy-nft${$buyNFTDto['tokenId']}", ['json' => $payload]);
     }
 
     public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface

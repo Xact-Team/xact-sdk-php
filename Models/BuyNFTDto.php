@@ -6,10 +6,10 @@ class BuyNFTDto
 {
     /* Account ID of the Buyer */
     public $fromAccountId; /* string */
-    /* Quantity to Buy */
-    public $quantity; /* number */
-    /* tokenId of the NFT */
-    public $tokenId; /* number */
+    /* TokenId of the NFT */
+    public $tokenId; /* string */
+    /* ID of the NFTs to Buy */
+    public $nftIds; /* number */
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
 }
