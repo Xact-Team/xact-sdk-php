@@ -10,6 +10,8 @@ class BuyNFTDto
     public $tokenId; /* string */
     /* ID of the NFTs to Buy */
     public $nftIds; /* number */
+    /* NFT to buy is link to a collection */
+    public $collectionId; /* string */
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
 }

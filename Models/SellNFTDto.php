@@ -12,6 +12,8 @@ class SellNFTDto
     public $quantity; /* number */
     /* ID of the NFTs for sale */
     public $nftIds;  /* Array /*
+    /* Group the nftIds under one QR Code */
+    public $isCollection;
     /* tokenId of the NFT */
     public $tokenId; /* number */
     /* Custom Uniq Id - Identify Browser's that made the request  */
