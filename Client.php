@@ -2,7 +2,7 @@
 
 namespace Xact;
 
-use GuzzleHttp\Client as GuzzelClient;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Xact\Models\CreateNFTDto;
@@ -17,11 +17,11 @@ use Xact\Models\RefreshAccountDTO;
 
 class Client
 {
-    private GuzzelClient $api;
+    private GuzzleClient $api;
 
     public function __construct(string $apiKey, string $baseUri = 'https://api.xact.ac/v1')
     {
-        $this->api = new GuzzelClient([
+        $this->api = new GuzzleClient([
             'base_uri' => $baseUri,
             RequestOptions::HEADERS => [
                 'Authorization' => "X-API-KEY: $apiKey",
