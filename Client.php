@@ -2,6 +2,7 @@
 
 namespace Xact;
 
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Xact\Models\CreateNFTDto;
@@ -16,19 +17,23 @@ use Xact\Models\RefreshAccountDTO;
 
 class Client
 {
-    private $api;
+    private GuzzleClient $api;
 
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, string $baseUri = 'https://api.xact.ac/v1')
     {
-        $this->api = new \GuzzleHttp\Client([
-            'base_uri' => 'https://api.xact.ac/v1',
+        $this->api = new GuzzleClient([
+            'base_uri' => $baseUri,
             RequestOptions::HEADERS => [
-                'Authorization' => "X-API-KEY: ${apiKey}",
+                'Authorization' => "X-API-KEY: $apiKey",
             ],
         ]);
     }
 
-    public function generateQRCode(array $scope = [ScopeEnum::PROFILE], string $uniqId, string $webhookUrl): ResponseInterface
+    public function generateQRCode(
+        string $uniqId,
+        string $webhookUrl,
+        array $scope = [ScopeEnum::PROFILE]
+    ): ResponseInterface
     {
         $payload = (array) $scope;
         $payload['uniqId'] = $uniqId;
@@ -39,7 +44,7 @@ class Client
 
     public function getXactFeesPayment(float $hbarAmount, bool $supportXact = false): ResponseInterface
     {
-        return $this->api->get("/xact/fees/payment?amount=${hbarAmount}&support=${supportXact}");
+        return $this->api->get("/xact/fees/payment?amount=$hbarAmount&support=$supportXact");
     }
 
     public function pay(PaymentDto $paymentDto, string $webhookUrl): ResponseInterface
@@ -111,14 +116,14 @@ class Client
     public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface
     {
        $payload = (array) $refreshAccount;
-       $payload['scope'] = $payload['scope'] ? $payload['scope'] : [ScopeEnum::PROFILE];
+       $payload['scope'] = $payload['scope'] ?: [ScopeEnum::PROFILE];
 
        return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
     }
 
     public function getNFTForSaleByTokenId(string $tokenId): ResponseInterface
     {
-        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${tokenId}");
+        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=$tokenId");
     }
 
 }
