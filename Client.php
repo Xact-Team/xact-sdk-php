@@ -110,7 +110,7 @@ class Client
        $payload = (array) $buyNFTDto;
        $payload['webhook'] = $webhookUrl;
 
-       return $this->api->post("/xact/buy-nft${$buyNFTDto['tokenId']}", ['json' => $payload]);
+       return $this->api->post("/xact/buy-nft/${$buyNFTDto['tokenId']}", ['json' => $payload]);
     }
 
     public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface
@@ -121,9 +121,9 @@ class Client
        return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
     }
 
-    public function getNFTForSaleByTokenId(string $tokenId): ResponseInterface
+    public function getNFTForSaleByTokenId(GetNFTDTO $getNFTDto): ResponseInterface
     {
-        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=$tokenId");
+        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${$getNFTDto['tokenId']}&nftId=${$getNFTDto['nftId']}");
     }
 
 }
