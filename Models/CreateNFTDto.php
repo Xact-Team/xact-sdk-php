@@ -5,7 +5,7 @@ namespace Xact\Models;
 class CreateNFTDto
 {
     public $nft: {
-      /* Name of the Token */
+        /* Name of the Token */
         public $name; /* string */
 
         /* Description of the Token */
@@ -27,8 +27,8 @@ class CreateNFTDto
     /* Which Account ID issue the NFT's Creation */
     public $fromAccountId; /* string */
 
-    /* Media linked to the NFT - Must be in base64 */
-    public $media; /* string:base64 */
+    /* cid linked to the NFT - From IPFS storage */
+    public $cid;
 
     /* Custom Uniq Id - Identify Browser's that made the request  */
     public $uniqId; /* string */
