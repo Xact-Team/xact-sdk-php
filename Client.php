@@ -19,10 +19,10 @@ class Client
 {
     private GuzzelClient $api;
 
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, string $baseUri = 'https://api.xact.ac/v1')
     {
         $this->api = new GuzzelClient([
-            'base_uri' => 'https://api.xact.ac/v1',
+            'base_uri' => $baseUri,
             RequestOptions::HEADERS => [
                 'Authorization' => "X-API-KEY: $apiKey",
             ],
