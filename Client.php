@@ -123,7 +123,7 @@ class Client
 
     public function getNFTForSaleByTokenId(GetNFTDTO $getNFTDto): ResponseInterface
     {
-        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${$getNFTDto['tokenId']}&nftId=${$getNFTDto['nftId']}");
+        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${$getNFTDto['tokenId']}&sellerAccountId=${$getNFTDto['sellerAccountId']}&nftId=${$getNFTDto['nftId']}");
     }
 
 }
