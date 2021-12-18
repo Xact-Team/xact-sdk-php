@@ -19,7 +19,7 @@ class Client
 {
     private GuzzleClient $api;
 
-    public function __construct(string $apiKey, string $baseUri = 'https://api.xact.ac/v1')
+    public function __construct(string $apiKey, string $baseUri = 'https://api.xact.ac/v1/')
     {
         $this->api = new GuzzleClient([
             'base_uri' => $baseUri,
@@ -39,12 +39,12 @@ class Client
         $payload['uniqId'] = $uniqId;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/getQRCode', ['json' => $payload]);
+        return $this->api->post('xact/getQRCode', ['json' => $payload]);
     }
 
     public function getXactFeesPayment(float $hbarAmount, bool $supportXact = false): ResponseInterface
     {
-        return $this->api->get("/xact/fees/payment?amount=$hbarAmount&support=$supportXact");
+        return $this->api->get("xact/fees/payment?amount=$hbarAmount&support=$supportXact");
     }
 
     public function pay(PaymentDto $paymentDto, string $webhookUrl): ResponseInterface
@@ -52,7 +52,7 @@ class Client
         $payload = (array) $paymentDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/pay', ['json' => $payload]);
+        return $this->api->post('xact/pay', ['json' => $payload]);
     }
 
     public function associate(TokenAssociateDto $tokenAssociationDto, string $webhookUrl): ResponseInterface
@@ -60,12 +60,12 @@ class Client
         $payload = (array) $tokenAssociationDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/associate-token', ['json' => $payload]);
+        return $this->api->post('xact/associate-token', ['json' => $payload]);
     }
 
     public function getXactFeesTransfer(): ResponseInterface
     {
-        return $this->api->get('/xact/fees/transfer-token');
+        return $this->api->get('xact/fees/transfer-token');
     }
 
     public function transfer(TokenTransferDto $tokenTransferDto, string $webhookUrl): ResponseInterface
@@ -73,12 +73,12 @@ class Client
         $payload = (array) $tokenTransferDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/transfer-token', ['json' => $payload]);
+        return $this->api->post('xact/transfer-token', ['json' => $payload]);
     }
 
     public function getXactFeesCreateNFT(): ResponseInterface
     {
-        return $this->api->get('/xact/fees/create-token');
+        return $this->api->get('xact/fees/create-token');
     }
 
     public function createNFT(CreateNFTDto $createNFTDto, string $webhookUrl): ResponseInterface
@@ -86,7 +86,7 @@ class Client
         $payload = (array) $createNFTDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/create-nft', ['json' => $payload]);
+        return $this->api->post('xact/create-nft', ['json' => $payload]);
     }
 
     public function sellNFT(SellNFTDto $sellNFTDto, string $webhookUrl): ResponseInterface
@@ -94,7 +94,7 @@ class Client
         $payload = (array) $sellNFTDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post('/xact/sell-nft', ['json' => $payload]);
+        return $this->api->post('xact/sell-nft', ['json' => $payload]);
     }
 
     public function deleteNFTFromSale(DeleteNFTDto $deleteNFTDto, string $webhookUrl): ResponseInterface
@@ -102,7 +102,7 @@ class Client
         $payload = (array) $deleteNFTDto;
         $payload['webhook'] = $webhookUrl;
 
-        return $this->api->post("/xact/delete-sell-nft/${$deleteNFTDto['tokenId']}", ['json' => $payload]);
+        return $this->api->post("xact/delete-sell-nft/${$deleteNFTDto['tokenId']}", ['json' => $payload]);
     }
 
     public function buyNFT(BuyNFTDto $buyNFTDto, string $webhookUrl): ResponseInterface
@@ -110,7 +110,7 @@ class Client
        $payload = (array) $buyNFTDto;
        $payload['webhook'] = $webhookUrl;
 
-       return $this->api->post("/xact/buy-nft/${$buyNFTDto['tokenId']}", ['json' => $payload]);
+       return $this->api->post("xact/buy-nft/${$buyNFTDto['tokenId']}", ['json' => $payload]);
     }
 
     public function refreshAccount(RefreshAccountDTO $refreshAccount): ResponseInterface
@@ -118,12 +118,12 @@ class Client
        $payload = (array) $refreshAccount;
        $payload['scope'] = $payload['scope'] ?: [ScopeEnum::PROFILE];
 
-       return $this->api->post('/xact/sdk/refresh', ['json' => $payload]);
+       return $this->api->post('xact/sdk/refresh', ['json' => $payload]);
     }
 
     public function getNFTForSaleByTokenId(GetNFTDTO $getNFTDto): ResponseInterface
     {
-        return $this->api->get("/xact/sdk/nft-for-sale?tokenId=${$getNFTDto['tokenId']}&sellerAccountId=${$getNFTDto['sellerAccountId']}&nftId=${$getNFTDto['nftId']}");
+        return $this->api->get("xact/sdk/nft-for-sale?tokenId=${$getNFTDto['tokenId']}&sellerAccountId=${$getNFTDto['sellerAccountId']}&nftId=${$getNFTDto['nftId']}");
     }
 
 }
